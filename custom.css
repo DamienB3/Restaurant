@@ -1,0 +1,46 @@
+.card-img-top {
+    border-radius: calc(2.25rem - 1px);
+}
+.close {
+  color: white;
+  opacity: 1;
+}
+.close:hover, .close:focus {
+  color: wheat;
+}
+.bg-inverse {
+  background-color: #ebab71 !important;
+}
+@media only screen and (max-width: 1200px){
+    .card {
+      display: flex;
+      flex-direction: row;
+    }
+  }
+  @media only screen and (max-width: 568px){
+      .card-img-top {
+  max-width: 300px;
+/*  height: auto;   commenting out to make all images the same size*/
+      }
+      @media only screen and (max-width: 505px){
+        .card {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: center;
+        }
+      }
+  }
+  @media only screen and (max-width: 444px){
+    .modal body {
+      padding: 0;
+    }
+    .table td {
+      vertical-align: middle;
+    }
+    .table td, .table th {
+      padding: 0;
+    }
+    .form-control {
+      padding: 0;
+    }
+  }
