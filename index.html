@@ -5,16 +5,25 @@
   2) Fix item in cart being decreased to below 0
   fix response cart bedlow 400px by changing padding
    - Remove padding:15px to modal-body and .table td,.form-control .table th padding: 0.75rem
+   3) Fix printing just cart on mobile 
+   4 ) Fix mobile view cutting footer off
+   5_ Increase height of map
+   6) Create working contact form
+   7 ) add about me and colors 
 -->
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Documents</title>
+    <title>Hip Hop Fish and Chicken</title>
+    <link rel="icon" href="icon.png">
     <link rel="stylesheet" href="cart.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.13.0/css/ol.css" type="text/css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Staatliches&display=swap" rel="stylesheet">
 <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
@@ -30,13 +39,36 @@
 
          <!--Removing button     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#cart">Cart (<span class="total-count"></span>)</button> -->
               <button style="margin-top: 1.2em;" class="clear-cart btn btn-danger">Clear Cart</button></div>
+              <ul>
+              <a href="">Home</a>
+              <a href="">Food</a>
+              <a href="">Contact</a>
+              </ul>
         </div>
     </nav>
     
     
     <!-- Main -->
     <!-- Removed Width: 20rem from div class cards to try to stretch responsiveness-->
+   <section style="position: relative;
+   text-align: center;">
+    <div>
+      <div id="linear">
+      <img id="hiphop" src="hiphop.jpg">
+      <div id="firstdiv" style=" position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%); color: white; width: 100%;">
+      <p>Want delicious food at an affordable price? (include arrow then have title be on next screen w/ new font)</p>
+        <p id="title">Hip Hop Fish & Chicken</p>
+
+        
+      </div>
+      </div>
+    </div>
+   </section>
     <div class="container">
+      <p id="subtitle">Hip Hop Fish & Chicken</p>
         <div class="row">
           <div class="col">
             <div class="card" style="border: none;">
@@ -111,10 +143,9 @@
         </div>
         </div>
 <div class="container">
-  <div class="row">
-    <div class="col">Hours here</div>
+  <div class="row" style="margin-bottom: 1em;">
     
-      <div id="map" class="col">Map Here</div> <!--Changed class from map to col-->
+      <div id="map" class="col"></div> <!--Changed class from map to col-->
       <script type="text/javascript">
         var map = new ol.Map({
           target: 'map',
@@ -196,19 +227,36 @@
       </div>
     </div> 
 <footer>
-  <h2>Footy</h2>
 
-    <div class="col">Contact Form here test
+  <div class="container2">
+  <div style="text-align:center">
+    <h2>Contact Us</h2>
+    <p>and come see us at: </p>
+    <a target="_blank" href="https://www.google.com/maps/place/Hip+Hop+Fish+and+Chicken/@30.3800169,-81.6528922,17z/data=!4m13!1m7!3m6!1s0x88e5b0e10d950b79:0x1c4ded73b823adfe!2s6610+N+Main+St,+Jacksonville,+FL+32208!3b1!8m2!3d30.3800169!4d-81.6507035!3m4!1s0x88e5b0e16b414a55:0x7c65d241497b59b8!8m2!3d30.3799931!4d-81.6506811">6610 N Main St, Jacksonville, FL 32208</a>
+  </div>
+  <div class="row2">
+    <div class="column2">
+      <h2>Hours are</h2>
+      <p>Monday - Thursday: 10am - 10pm.</p>
+       <p>Friday: 8am - 10pm.</p>
+       <p>Saturday: 10am - 11pm.</p>
+       <p>Sunday: 11am - 9pm.</p>
+       <p>Call Us <a href="tel:904-766-7272">904-766-7272</a>.</p>
 
+    </div>
+    <div class="column2">
       <form action="/action_page.php">
-        <label for="fname">First name:</label><br>
-        <input type="text" id="fname" name="fname" value="John"><br>
-        <label for="lname">Last name:</label><br>
-        <input type="text" id="lname" name="lname" value="Doe"><br><br>
+        <label for="email">Email</label>
+        <input type="text" id="email" name="email" placeholder="Your email">
+        <label for="subject">Subject</label>
+        <textarea id="subject" name="subject" placeholder="Write something.." style="height:170px"></textarea>
         <input type="submit" value="Submit">
-      </form> 
+      </form>
     </div>
   </div>
+  <div style="background-color: orange;">Credit: Damien Brooks</div>
+</div>
+
 </footer>
     
 </body>
