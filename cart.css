@@ -28,11 +28,11 @@ body {
     background-color: red;
     color: white;
     border-radius: 25px;
-    margin-right: 1em;
-    margin-left: -0.5em;
+    position: absolute;
     padding-left: 0.2em;
     padding-right: 0.2em;
     font-weight: bold;
+    margin-top: -.5em;
   }
 
 /* Modal Images */
@@ -91,10 +91,18 @@ body {
     height: 200px;
     width: 20%;
   }
+#map1 {
+  height: 180px;
+}
+.leaflet-popup-content { 
+  font-family: 'Staatliches', cursive;
+  font-weight: bold;
+  text-align: center;
+}
 
   /* Contact form */
   /* Style inputs */
-input[type=text], select, textarea {
+input[type=email], select, textarea {
   width: 100%;
   padding: 12px;
   border: 1px solid #ccc;
@@ -103,16 +111,20 @@ input[type=text], select, textarea {
   resize: vertical;
 }
 
-input[type=submit] {
-  background-color: #ebab71;
-  color: white;
+#confirmbutton, [type=submit] {
+  background-color: #ce6d15;;
+  color: black;
   padding: 12px 20px;
   border: none;
   cursor: pointer;
+  border-radius: 2em;
+    font-size: 1.1em;
+    letter-spacing: .9px;
+    font-weight: bold;
 }
 
-input[type=submit]:hover {
-  background-color: #d6b392;
+#confirmbutton:hover, [type=submit]:hover {
+  background-color: #ce6d15c7;
 }
 
 /* Style the container/contact section */
@@ -156,7 +168,7 @@ input[type=submit]:hover {
  }  */
 /* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
 @media screen and (max-width: 600px) {
-  .column2, input[type=submit] {
+  .column2, #confirmbutton, [type=submit] {
     width: 100%;
     margin-top: 0;
   }

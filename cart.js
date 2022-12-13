@@ -163,7 +163,7 @@ function displayCart() {
       + "<td>" + cartArray[i].name + "</td>" 
       + "<td>(" + cartArray[i].price + ")</td>"
       + "<td><div class='input-group'><button class='minus-item input-group-addon btn btn-primary' data-name=" + cartArray[i].name + ">-</button>"
-      + "<input type='number' class='item-count form-control' data-name='" + cartArray[i].name + "' value='" + cartArray[i].count + "'>"
+      + "<input type='number' disabled class='item-count form-control' data-name='" + cartArray[i].name + "' value='" + cartArray[i].count + "'>"
       + "<button class='plus-item btn btn-primary input-group-addon' data-name=" + cartArray[i].name + ">+</button></div></td>"
       + "<td><button class='delete-item btn btn-danger' data-name=" + cartArray[i].name + ">X</button></td>"
       + " = " 
@@ -223,3 +223,44 @@ caption.innerHTML = event.target.alt;
 document.querySelector(".close").addEventListener("click", () => {
 modalEle.style.display = "none";
 });
+
+  
+
+//Nav Menu
+
+$(document).scroll(function() {
+  var scrolled = $(this).scrollTop();
+  
+  if (scrolled > 300) {
+    $('#nav').fadeIn();
+  } else {
+    $('#nav').fadeOut();
+  }
+});
+
+// Responsive Mobile Menu
+function toggleMenu() {
+  var menuBox = document.getElementById('horizontal-list');    
+    var menuI = document.getElementById('menu-icon');
+    const isHover = e => e.parentElement.querySelector(':hover') === e;    
+    
+    document.addEventListener('mousemove', function checkHover() {
+      const hovered = isHover(menuI);
+      if (hovered !== checkHover.hovered) {
+        console.log(hovered ? 'hovered' : 'not hovered');
+        checkHover.hovered = hovered;
+        menuI.style.backgroundColor = 'royalblue';
+
+      }
+    });
+  if(menuBox.style.display == "block")  { 
+    menuBox.style.display = "none";
+      menuI.style.backgroundColor = 'crimson';
+     
+  }
+  else { 
+    menuBox.style.display = "block";
+      menuI.style.backgroundColor = "royalblue";
+  }
+    return;
+};

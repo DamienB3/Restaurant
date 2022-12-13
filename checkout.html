@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<!--
+  0 - Add review section for purchases
+  1 - Add code so it displays an error if expiration has passed.
+  2 - Add code so if a mastercard is selected put the visibility lower for others.
+  3 - Once submitted have a thank you screen and option to go back with header.
+  4 - Add header and footer
+  5 - Review responsiveness on actual mobile
+  6 - add css or make one for this one
+  7 - For required make sure to only accept strings, numbers with dashes, and 3 numbers only
+-->
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="cart.css">
+<script src="styles/creditcards.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
+     integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI="
+     crossorigin=""/>
+     <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
+     integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
+     crossorigin=""></script>
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Staatliches&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rubik+Moonrocks&family=Staatliches&display=swap" rel="stylesheet">
+<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="custom.css">
+
+<style>
+  #nav {
+    display: block;
+  }
+#expiration-date {
+    margin-bottom: 1em;
+  }
+option {
+    font-weight: bold;
+  }
+
+* {
+  box-sizing: border-box;
+}
+
+.rowCard {
+  display: -ms-flexbox; /* IE10 */
+  display: flex;
+  -ms-flex-wrap: wrap; /* IE10 */
+  flex-wrap: wrap;
+  margin: 6em 0 1em;
+}
+
+.col-25 {
+  -ms-flex: 25%; /* IE10 */
+  flex: 25%;
+}
+
+.col-50 {
+  -ms-flex: 50%; /* IE10 */
+  flex: 50%;
+}
+
+.col-75 {
+  -ms-flex: 75%; /* IE10 */
+  flex: 75%;
+}
+
+.col-25,
+.col-50,
+.col-75 {
+  padding: 0 16px;
+}
+
+.containerCard {
+  background-color: #f2f2f2;
+  padding: 5px 20px 15px 20px;
+  border: 1px solid lightgrey;
+  border-radius: 3px;
+}
+
+input[type=text] {
+  width: 100%;
+  margin-bottom: 20px;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+label {
+  margin-bottom: 10px;
+  display: block;
+}
+
+.icon-container {
+  margin-bottom: 20px;
+  padding: 7px 0;
+  font-size: 24px;
+}
+/*
+.btn:hover {
+  background-color: #04aa6dab;
+}
+
+.btn {
+  background-color: #04AA6D;
+  color: white;
+  padding: 12px;
+  margin: 10px 0;
+  border: none;
+  width: 8%;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 24px;
+}
+
+.btn:hover {
+  background-color: #45a049;
+}
+*/
+a {
+  color: #2196F3;
+}
+
+hr {
+  border: 1px solid lightgrey;
+}
+
+span.price {
+  float: right;
+  color: grey;
+}
+/* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other (also change the direction - make the "cart" column go on top) */
+@media (min-width: 2000px)
+{
+  .rowCard {
+    margin: 8em 0 1em;
+  }
+}
+@media (max-width:340px){
+  .rowCard {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    margin: 6em 0px 2em;
+    width: 50%;
+}
+}
+
+
+@media (max-width: 800px) {
+  .rowCard {
+    flex-direction: column-reverse;
+  }
+  .col-25 {
+    margin-bottom: 20px;
+  }
+}
+</style>
+</head>
+<body>
+<!-- Navigation menu add CSS-->
+  <nav id="nav1" class="navbar navbar-inverse bg-inverse fixed-top bg-faded">
+    <div class="row0">
+        <div class="col0">
+          <div id="startdiv">
+          <img id="carts" src="shopping-cart.png" style="position: relative;; cursor: pointer;" class="total-count" data-toggle="modal" data-target="#cart"><span id="wishlist" class="total-count"></span>
+
+     <!--Removing button     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#cart">Cart (<span class="total-count"></span>)</button> 
+          <button style="margin-left: 1.5em;" class="clear-cart btn btn-danger">Clear Cart</button> -->
+        </div>
+          <div id="centerdiv">
+            <a href="index.html">
+         <img id="mainlogo" src="icon.png">
+        </a>
+        </div>
+        <div id="lastdiv">
+          <a id="menu-icon" onclick="toggleMenu();"></a>
+         <ul id="horizontal-list">
+          <li><a class="links" href="index.html#firstdiv">Home</a></li>
+          <li><a class="links" href="index.html#subtitle">Food</a></li>
+          <li><a class="links" href="index.html#Damien">Contact</a></li>
+          </ul>
+        </div>
+        </div>
+    </div>
+</nav>
+
+<div class="rowCard">
+  <div class="col-75">
+    <div class="containerCard">
+      <form>
+      
+        <div class="rowCard">
+        
+          <div class="col-50">
+            <h3 id="payment">Payment</h3>
+            <label for="fname" class="creditlabels">Accepted Cards</label>
+            <div class="icon-container">
+              <i id="visa" class="fa fa-cc-visa" style="color:navy;"></i>
+              <i id="amex" class="fa fa-cc-amex" style="color:blue;"></i>
+              <i id="mastercard" class="fa fa-cc-mastercard" style="color:red;"></i>
+              <i id="discover" class="fa fa-cc-discover" style="color:orange;"></i>
+            </div>
+            <label for="cname" class="creditlabels">Name on Card</label>
+            <input type="text" id="cname" name="cardname" required placeholder="John Doe">
+            <label for="ccnum" class="creditlabels">Credit card number</label>
+            <input type="text" id="ccnum" onchange="visas();" required  name="cardnumber" placeholder="1111-2222-3333-4444">
+            <div class="form-group" id="expiration-date">
+              <label class="creditlabels">Expiration Date</label>
+              <select style="padding: 4px; width: auto;" onfocus='this.size=6;' onblur='this.size=1;' onchange='this.size=1; this.blur();''>
+                  <option value="01">January</option>
+                  <option value="02">February </option>
+                  <option value="03">March</option>
+                  <option value="04">April</option>
+                  <option value="05">May</option>
+                  <option value="06">June</option>
+                  <option value="07">July</option>
+                  <option value="08">August</option>
+                  <option value="09">September</option>
+                  <option value="10">October</option>
+                  <option value="11">November</option>
+                  <option value="12">December</option>
+              </select>
+              <select style="padding: 4px; width: auto;">
+                  <option value="22"> 2022</option>
+                  <option value="23"> 2023</option>
+                  <option value="24"> 2024</option>
+                  <option value="25"> 2025</option>
+                  <option value="26"> 2026</option>
+                  <option value="27"> 2027</option>
+              </select>
+          </div>
+              <div class="col-50" style="padding: 0;">
+                <label for="cvv" class="creditlabels">CVV</label>
+                <input type="text" style="width: auto" required id="cvv" name="cvv" placeholder="352">
+                <div>Total price: $<span class="total-cart"></span></div>
+              </div>
+              <button type="button" id="confirmbutton" class="cconfirm" onclick="Submission();">Submit</button>
+
+<!-- Trying Modal pop up-->
+<div id="myModal2" class="modal2">
+
+<div class="modal-content2">
+  <span id="close2">&times;</span>
+  <p>Thank you for your purchase!</p>
+  <p>Your food will be ready soon.</p>
+<br/>
+<p>Returning to home page...
+  <i class="fa fa-spinner fa-spin" style="font-size:24px"></i>
+</p>
+</div>
+</div>
+
+
+          
+
+            </div>
+          </div>
+          </form>
+        </div>
+      
+    </div>
+  </div>
+  
+  <div id="map1">
+
+  </div>
+<script>
+  var map = L.map('map1').setView([30.38011340530379, -81.65068110251251], 16);
+L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  maxZoom: 19,
+  attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+}).addTo(map);
+var marker = L.marker([30.38011340530379, -81.65068110251251]).addTo(map);
+var popup = L.popup()
+.setLatLng([30.38042440530379, -81.65068110251251])
+.setContent("Hip Hop Fish and Chicken")
+.openOn(map);
+</script>
+  
+  
+  </div>
+       <!-- Modal --> 
+      <div class="modal fade" id="cart" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Cart</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <table class="show-cart table">
+                
+              </table>
+              <div>Total price: $<span class="total-cart"></span></div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div> 
+  <footer>
+  
+    <div class="container2">
+    <div style="text-align:center">
+      <h2>Contact Us</h2>
+      <p class="beginfooter">and come see us at: </p>
+      <a class="beginfooter2" target="_blank" href="https://www.google.com/maps/place/Hip+Hop+Fish+and+Chicken/@30.3800169,-81.6528922,17z/data=!4m13!1m7!3m6!1s0x88e5b0e10d950b79:0x1c4ded73b823adfe!2s6610+N+Main+St,+Jacksonville,+FL+32208!3b1!8m2!3d30.3800169!4d-81.6507035!3m4!1s0x88e5b0e16b414a55:0x7c65d241497b59b8!8m2!3d30.3799931!4d-81.6506811">6610 N Main St, Jacksonville, FL 32208</a>
+    </div>
+    <div class="row2">
+      <div class="column2">
+        <h2>Hours are</h2>
+        <p class="footerparas">Monday - Thursday: 10am - 10pm.</p>
+         <p class="footerparas">Friday: 8am - 10pm.</p>
+         <p class="footerparas">Saturday: 10am - 11pm.</p>
+         <p class="footerparas">Sunday: 11am - 9pm.</p>
+         <p class="footerparas">&#9742;<a class="beginfooter" href="tel:904-766-7272">  904-766-7272</a>.</p>
+  
+  
+      </div>
+      <div class="column2">
+        <form method="post" action="contact-form-process.php">
+          <label class="footerparas" for="email">Email</label>
+          <input type="email" id="email" required name="email" placeholder="Your email">
+          <label class="footerparas" for="subject">Subject</label>
+          <textarea id="subject" minlength="2" name="subject" placeholder="Write something to me..." style="height:170px"></textarea>
+          <input id="sendbutton" type="submit" value="Submit">
+        </form>
+      </div>
+    </div>
+    <br>
+    <div id="Damien">Website by <a target="_blank" href="https://damienbrooks.com" style="color:#ad631e;">Damien Brooks</a></div>
+  </div>
+  
+  </footer>
+      
+
+</body>
+<script src="cart.js"></script>
+
+</html>

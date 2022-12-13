@@ -5,11 +5,13 @@
   2) Fix item in cart being decreased to below 0
   fix response cart bedlow 400px by changing padding
    - Remove padding:15px to modal-body and .table td,.form-control .table th padding: 0.75rem
-   3) Fix printing just cart on mobile 
-   4 ) Fix mobile view cutting footer off
-   5_ Increase height of map
    6) Create working contact form
-   7 ) add about me and colors 
+   10) Add smooth scrolling on phones
+   12) Add window click to hide nav on mobile
+   13) Fix Credit cards images not displaying after 1 input and submission without input
+
+   HIP HOP Coordinates: -81.65068110251251, 30.38011340530379
+   try adding this to scroll-margin-top     scroll-margin-top: 2.09em; fix for mobile
 -->
 <html lang="en">
 <head>
@@ -19,31 +21,48 @@
     <title>Hip Hop Fish and Chicken</title>
     <link rel="icon" href="icon.png">
     <link rel="stylesheet" href="cart.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
+     integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI="
+     crossorigin=""/>
+     <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
+     integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
+     crossorigin=""></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.13.0/css/ol.css" type="text/css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Staatliches&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rubik+Moonrocks&family=Staatliches&display=swap" rel="stylesheet">
 <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.13.0/build/ol.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <link rel="stylesheet" type="text/css" href="custom.css">
+
 </head>
 
 <body>
-    <nav class="navbar navbar-inverse bg-inverse fixed-top bg-faded">
-        <div class="row">
-            <div class="col" style="margin-top: -0.8em;">
-              <img src="shopping-cart.png" style="margin-top: 1.2em; cursor: pointer;" class="total-count" data-toggle="modal" data-target="#cart"><span id="wishlist" class="total-count"></span>
-
-         <!--Removing button     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#cart">Cart (<span class="total-count"></span>)</button> -->
-              <button style="margin-top: 1.2em;" class="clear-cart btn btn-danger">Clear Cart</button></div>
-              <ul>
-              <a href="">Home</a>
-              <a href="">Food</a>
-              <a href="">Contact</a>
+    <nav id="nav" class="navbar navbar-inverse bg-inverse fixed-top bg-faded">
+        <div class="row0">
+            <div class="col0">
+              <div id="startdiv">
+              <img id="carts" src="shopping-cart.png" style="position: relative;; cursor: pointer;" class="total-count" data-toggle="modal" data-target="#cart"><span id="wishlist" class="total-count"></span>
+            </div>
+              <div id="centerdiv">
+                <a href="index.html">
+             <img id="mainlogo" src="icon.png">
+            </a>
+            </div>
+            <div id="lastdiv">
+              <a id="menu-icon" onclick="toggleMenu();"></a>
+             <ul id="horizontal-list">
+              <li><a class="links" href="#firstdiv">Home</a></li>
+              <li><a class="links" href="#subtitle">Food</a></li>
+              <li><a class="links" href="#Damien">Contact</a></li>
               </ul>
+            </div>
+            </div>
         </div>
     </nav>
     
@@ -59,16 +78,26 @@
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%); color: white; width: 100%;">
-      <p>Want delicious food at an affordable price? (include arrow then have title be on next screen w/ new font)</p>
-        <p id="title">Hip Hop Fish & Chicken</p>
+      <div class="container0">
+        <div class="content0">
+          <p id="p0">Want delicious food at an affordable price?</p>
+          <a href="#visit">
+          <svg id="more-arrows" href="#visit" style="cursor: pointer;">
+            <polygon class="arrow-top" points="37.6,27.9 1.8,1.3 3.3,0 37.6,25.3 71.9,0 73.7,1.3 "/>
+            <polygon class="arrow-middle" points="37.6,45.8 0.8,18.7 4.4,16.4 37.6,41.2 71.2,16.4 74.5,18.7 "/>
+            <polygon class="arrow-bottom" points="37.6,64 0,36.1 5.1,32.8 37.6,56.8 70.4,32.8 75.5,36.1 "/>
+          </svg></a>
+        </div>
+      </div>
 
         
       </div>
       </div>
     </div>
    </section>
-    <div class="container">
-      <p id="subtitle">Hip Hop Fish & Chicken</p>
+    <div id="contain" class="container">
+    <p id="visit" style="scroll-margin-top: 88px;">Come visit</p>
+      <p id="subtitle" style="font-style:italic;">Hip Hop Fish & Chicken!</p>
         <div class="row">
           <div class="col">
             <div class="card" style="border: none;">
@@ -76,6 +105,8 @@
       <div class="card-block">
         <h4 class="card-title">Chicken Wings</h4>
         <p class="card-text">6 wings and fries included!</p>
+        <p class="card-text">$5.99</p>
+
         <a href="#" title="Add item" data-name="Wings" data-price="5.99" class="add-to-cart btn btn-primary">Add to cart</a>
       </div>
     </div>
@@ -85,7 +116,8 @@
       <img title="Chicken Livers" class="card-img-top" src="livers.jpg" alt="Chicken Livers">
       <div class="card-block">
         <h4 class="card-title">Chicken Livers</h4>
-        <p class="card-text">1LB of livers</p>
+        <p class="card-text">1 LB of livers</p>
+        <p class="card-text">$5.99</p>
         <a href="#" title="Add item" data-name="Livers" data-price="5.99" class="add-to-cart btn btn-primary">Add to cart</a>
       </div>
     </div>
@@ -96,6 +128,8 @@
       <div class="card-block">
         <h4 class="card-title">Shrimp</h4>
         <p class="card-text">30 count of shrimp</p>
+        <p class="card-text">$10.99</p>
+
         <a href="#" title="Add item" data-name="Lemon" data-price="9.99" class="add-to-cart btn btn-primary">Add to cart</a>
       </div>
     </div>
@@ -109,6 +143,7 @@
       <div class="card-block">
         <h4 class="card-title">Catfish</h4>
         <p class="card-text">Two pieces of catfish</p>
+        <p class="card-text">$5.99</p>
         <a href="#" title="Add item" data-name="Catfish" data-price="5.99" class="add-to-cart btn btn-primary">Add to cart</a>
       </div>
     </div>
@@ -119,6 +154,7 @@
       <div class="card-block">
         <h4 class="card-title">Chicken Tenders</h4>
         <p class="card-text">5 piece tenders</p>
+        <p class="card-text">$6.29</p>
         <a href="#" title="Add item" data-name="Tenders" data-price="6.29" class="add-to-cart btn btn-primary">Add to cart</a>
       </div>
     </div>
@@ -130,6 +166,7 @@
         <h4 class="card-title">Mix and Match!</h4>
         <h8>Mix any two meats of your choice!</h8>
         <p class="card-text">Flounder and wings pictured.</p>
+        <p class="card-text">$8.99</p>
         <a href="#" title="Add item" data-name="Mix" data-price="8.99" class="add-to-cart btn btn-primary">Add to cart</a>
       </div>
     </div>
@@ -142,67 +179,25 @@
             </div>
         </div>
         </div>
-<div class="container">
-  <div class="row" style="margin-bottom: 1em;">
-    
-      <div id="map" class="col"></div> <!--Changed class from map to col-->
-      <script type="text/javascript">
-        var map = new ol.Map({
-          target: 'map',
-          layers: [
-            new ol.layer.Tile({
-              source: new ol.source.OSM()
-            })
-          ],
-          view: new ol.View({
-            center: ol.proj.fromLonLat([-81.65068110251251, 30.38011340530379]),
-            zoom: 15
-          })
-        });
-      </script>
-    </div>
 
-  </div>
+        <div id="map1">
 
+        </div>
+    <script>
+        var map = L.map('map1').setView([30.38011340530379, -81.65068110251251], 16);
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+    }).addTo(map);
+    var marker = L.marker([30.38011340530379, -81.65068110251251]).addTo(map);
+    var popup = L.popup()
+    .setLatLng([30.38042440530379, -81.65068110251251])
+    .setContent("Hip Hop Fish and Chicken")
+    .openOn(map);
+    </script>
 
 </div>
-    <!--Let me try another row
-    <div class="container">
-      <div class="row">
-        <div class="col">
-          <div class="card" style="width: 20rem;">
-    <img class="card-img-top" src="catfish.jpg" alt="Card image cap">
-    <div class="card-block">
-      <h4 class="card-title">Catfish</h4>
-      <p class="card-text">Two pieces of catfish</p>
-      <a href="#" data-name="Catfish" data-price="5.99" class="add-to-cart btn btn-primary">Add to cart</a>
-    </div>
-  </div>
-        </div>
-        <div class="col">
-          <div class="card" style="width: 20rem;">
-    <img class="card-img-top" src="tenders.jpg" alt="Card image cap">
-    <div class="card-block">
-      <h4 class="card-title">Chicken Tenders</h4>
-      <p class="card-text">5 piece tenders</p>
-      <a href="#" data-name="Tenders" data-price="6.29" class="add-to-cart btn btn-primary">Add to cart</a>
-    </div>
-  </div>
-        </div>
-        <div class="col">
-          <div class="card" style="width: 20rem;">
-    <img class="card-img-top" src="flounder.jpg" alt="Card image cap">
-    <div class="card-block">
-      <h4 class="card-title">Mix and Match!</h4>
-      <h8>Mix any two meats of your choice!</h8>
-      <p class="card-text">1 piece of flounder and 3 piece wings.</p>
-      <a href="#" data-name="Mix" data-price="8.99" class="add-to-cart btn btn-primary">Add to cart</a>
-    </div>
-  </div>
-        </div>
-      </div>
-  </div>
--->
+  
      <!-- Modal --> 
     <div class="modal fade" id="cart" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-lg" role="document">
@@ -221,7 +216,7 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button" onclick="window.print();" class="btn btn-primary">Print Wishlist</button>
+            <button type="button" onclick="document.location='checkout.html'" class="btn btn-primary">Checkout</button>
           </div>
         </div>
       </div>
@@ -231,30 +226,32 @@
   <div class="container2">
   <div style="text-align:center">
     <h2>Contact Us</h2>
-    <p>and come see us at: </p>
-    <a target="_blank" href="https://www.google.com/maps/place/Hip+Hop+Fish+and+Chicken/@30.3800169,-81.6528922,17z/data=!4m13!1m7!3m6!1s0x88e5b0e10d950b79:0x1c4ded73b823adfe!2s6610+N+Main+St,+Jacksonville,+FL+32208!3b1!8m2!3d30.3800169!4d-81.6507035!3m4!1s0x88e5b0e16b414a55:0x7c65d241497b59b8!8m2!3d30.3799931!4d-81.6506811">6610 N Main St, Jacksonville, FL 32208</a>
+    <p class="beginfooter">and come see us at: </p>
+    <a class="beginfooter2" target="_blank" href="https://www.google.com/maps/place/Hip+Hop+Fish+and+Chicken/@30.3800169,-81.6528922,17z/data=!4m13!1m7!3m6!1s0x88e5b0e10d950b79:0x1c4ded73b823adfe!2s6610+N+Main+St,+Jacksonville,+FL+32208!3b1!8m2!3d30.3800169!4d-81.6507035!3m4!1s0x88e5b0e16b414a55:0x7c65d241497b59b8!8m2!3d30.3799931!4d-81.6506811">6610 N Main St, Jacksonville, FL 32208</a>
   </div>
   <div class="row2">
     <div class="column2">
       <h2>Hours are</h2>
-      <p>Monday - Thursday: 10am - 10pm.</p>
-       <p>Friday: 8am - 10pm.</p>
-       <p>Saturday: 10am - 11pm.</p>
-       <p>Sunday: 11am - 9pm.</p>
-       <p>Call Us <a href="tel:904-766-7272">904-766-7272</a>.</p>
+      <p class="footerparas">Monday - Thursday: 10am - 10pm.</p>
+       <p class="footerparas">Friday: 8am - 10pm.</p>
+       <p class="footerparas">Saturday: 10am - 11pm.</p>
+       <p class="footerparas">Sunday: 11am - 9pm.</p>
+       <p class="footerparas">&#9742;<a class="beginfooter" href="tel:904-766-7272">  904-766-7272</a>.</p>
+
 
     </div>
     <div class="column2">
-      <form action="/action_page.php">
-        <label for="email">Email</label>
-        <input type="text" id="email" name="email" placeholder="Your email">
-        <label for="subject">Subject</label>
-        <textarea id="subject" name="subject" placeholder="Write something.." style="height:170px"></textarea>
-        <input type="submit" value="Submit">
+      <form method="post" action="contact-form-process.php">
+        <label class="footerparas" for="email">Email</label>
+        <input type="email" id="email" required name="email" placeholder="Your email">
+        <label class="footerparas" for="subject">Subject</label>
+        <textarea id="subject" minlength="2" name="subject" placeholder="Write something to me..." style="height:170px"></textarea>
+        <input id="sendbutton" type="submit" value="Submit">
       </form>
     </div>
   </div>
-  <div style="background-color: orange;">Credit: Damien Brooks</div>
+  <br>
+  <div id="Damien">Website by <a target="_blank" href="https://damienbrooks.com" style="color:#ad631e;">Damien Brooks</a></div>
 </div>
 
 </footer>

@@ -3,14 +3,109 @@
   color: #0f0 !important;
   outline: solid #f00 1px !important;
 }  */
+#map {
+  height: 180px;
+}
+
+#payment {
+  margin-top: -3em;
+}
+
+/* The Modal (background) */
+.modal2 {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content2 {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+}
+
+/* The Close Button */
+#close2 {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+#close2:hover,
+#close2:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+
+
+html {
+  scroll-behavior: smooth;
+}
+#Damien {
+  text-align: center;
+  font-size: 1.5rem;
+}
+.footerparas {
+  font-size: 1.5rem;
+}
 body {
   font-family: 'Staatliches', cursive;
 }
-#subtitle {
+.links {
+  font-size: 1.5rem;
+}
+#startdiv {
+  float: left;
+  margin-top: 0.7em;
+}
+#centerdiv {
+  float: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+#lastdiv {
+  float: right;
+
+}
+#captions {
+  font-size: 1.28rem;
+}
+ul {
+  display: flex;
+}
+li {
+  padding: 14px 16px 0 16px;
+  list-style-type: none;
+}
+#mainlogo {
+  width: 46px;
+  height: 49px
+}
+#visit {
   text-align: center;
   font-size: 2rem;
 }
-
+#subtitle {
+  font-family: 'Rubik Moonrocks', cursive;
+  font-size: 3rem;
+  text-align: center;
+}
 .card-img-top {
     border-radius: calc(2.25rem - 1px);
 }
@@ -27,6 +122,61 @@ body {
 #firstdiv{
   font-size: 40px;
 }
+.container0 {
+  height: 100vh;
+  padding: 20px;
+  text-align: center;
+}
+.content0 {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+.content0 #p0 {
+  margin: 0 0 20px;
+}
+
+#nav {
+  display: none;
+}
+/* Arrow & Hover Animation */
+#more-arrows {
+  width: 75px;
+  height: 65px;
+}
+#more-arrows:hover polygon {
+  fill: #fff;
+  transition: all 0.2s ease-out;
+}
+#more-arrows:hover polygon.arrow-bottom {
+  transform: translateY(-18px);
+}
+#more-arrows:hover polygon.arrow-top {
+  transform: translateY(18px);
+}
+polygon {
+  fill: #fff;
+  transition: all 0.2s ease-out;
+}
+polygon.arrow-middle {
+  opacity: 0.75;
+}
+polygon.arrow-top {
+  opacity: 0.5;
+}
+
+#more-arrows {
+  animation: bounce2 2s ease infinite;
+}
+@keyframes bounce2 {
+	0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+	40% {transform: translateY(-15px);}
+	60% {transform: translateY(-15px);}
+}
+#more-arrows:hover {
+  animation: none;
+}
 @media only screen and (max-width: 1200px){
     .card {
       display: flex;
@@ -34,10 +184,10 @@ body {
     }
   }
   @media only screen and (max-width: 568px){
-      .card-img-top {
+    /*  .card-img-top {
   max-width: 300px;
-/*  height: auto;   commenting out to make all images the same size*/
-      }
+  height: auto;   commenting out to make all images the same size
+      } */
       @media only screen and (max-width: 505px){
         .card {
           display: flex;
@@ -65,8 +215,16 @@ body {
       width: 100vw;
     }
   }
+  @media screen and (min-width: 1800px){
+    .card-title {
+      font-size: 2rem;
+    }
+    .card-text {
+      font-size: 1.75rem;
+    }
+  }
   @media screen and (min-width: 2000px){
-    #subtitle {
+    #subtitle, #visit {
       font-size: 60px;
     }
     #title {
@@ -86,7 +244,10 @@ body {
       font-size: 2rem;
     }
     h8 {
-      font-size: 1.5rem;
+      font-size: 1.75rem;
+    }
+    .beginfooter, .beginfooter2 {
+      font-size: 2rem;
     }
     .add-to-cart {
       font-size: 2.2rem;
@@ -94,11 +255,144 @@ body {
     #captions {
       font-size: 2rem;
     }
+    h2, .h2 {
+      font-size: 4.5rem;
+    }
+    .footerparas {
+      font-size: 2.75rem;
+    }
+    #email, #subject {
+      font-size: 2rem;
+    }
+    #sendbutton {
+      font-size: 1.75rem;
+    }
+    #Damien {
+      font-size: 2rem;
+    }
     
     }
     @media screen and (max-width: 1000px){
-      #subtitle {
+      #subtitle, #visit {
         font-size: 1.5rem;
       }
+      .close {
+        font-size: 2.5rem;
+      }
     }
+    @media only screen and (min-width: 1000px)
+    {
+      .close {
+        font-size: 2.5rem;
+      }
+    }
+    @media only screen and (min-width: 2000px)
+    {
+      .close {
+        font-size: 4rem;
+      }
+      .links {
+        font-size: 2.5rem;
+      }
+      #carts {
+        width: 60px;
+      }
+      #mainlogo {
+        width: 90px;
+        height: 90px;
+    }
+    }
+    @media only screen and (min-width: 1330px)
+    {
+      ul {
+        margin-left: 20em;
+      }
+      
+    }
+   
+    #menu-icon {
+      display: hidden;
+      width: 40px;
+      height: 40px;
+      background: crimson url(menu-icon.png) center;
+      cursor: pointer;
+  }
   
+  
+  @media only screen and (max-width: 600px){
+    #menu-icon {
+
+      background: url(menu-icon.png) crimson;
+      display: block;
+}
+#menu-icon:hover {
+  background: url(menu-icon.png) royalblue;
+}
+nav ul, nav:active ul { 
+
+  display: none;
+  position: absolute;
+  padding: 5px;
+  background: #ebab71;
+  border: 5px solid black;
+  right: 20px;
+  top: 60px;
+  width: 50%;
+  border-radius: 4px 0 4px 4px;
+      z-index: 1;
+
+}
+
+nav li {
+
+  text-align: center;
+  width: 100%;
+  padding: 10px 0;
+  margin: 0;
+
+}
+
+nav:hover ul {
+
+  display: block;
+
+}
+   } 
+@media only screen and (min-width: 1600px){
+  .footerparas {
+    font-size: 1.5rem;
+  }
+  .h2, h2 {
+    font-size: 3rem;
+  }
+  .beginfooter {
+    font-size: 1.75rem;
+  }
+  .beginfooter2 {
+    font-size: 1.5rem;
+  }
+  h3 {
+    font-size: 2.3rem;
+  }
+  .creditlabels {
+    font-size: 1.8rem;
+  }
+  #confirmbutton, [type=submit] {
+    font-size: 1.6em;
+  }
+  #payment {
+    margin-top: -2em;
+  }
+}
+
+@media only screen and (min-width: 2000px){
+  #payment {
+    margin-top: -3em;
+  }
+}
+
+@media only screen and (min-width: 601px){
+  #horizontal-list {
+    display: flex !important ;
+}
+}
